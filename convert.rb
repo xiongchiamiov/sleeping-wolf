@@ -32,7 +32,7 @@ repo.issues.each do |gh_issue|
 	issues << issue
 end
 
-ticgit = TicGit.open('.')
+ticgit = TicGit.open('../synchronizer-test')
 
 ticgit.ticket_list.each do |ti_issue|
 	issue = Issue.new

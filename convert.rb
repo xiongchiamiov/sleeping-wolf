@@ -37,7 +37,7 @@ ticgit = TicGit.open('../synchronizer-test')
 ticgit.ticket_list.each do |ti_issue|
 	issue = Issue.new
 	issue.id = ti_issue.ticket_id
-	issue.title = ti_issue.ticket_name
+	issue.title = ti_issue.title
 	
 	issues << issue
 end

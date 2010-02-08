@@ -12,9 +12,29 @@ class Issue
 	#attr_accessor :body, :closed_at, :labels, :state, :created_at
 	
 	attr_accessor :id, :title
+	attr_accessor :comments # arrays
+	
+	def initialize
+		@comments = []
+	end
 	
 	def to_s
-		return "#{@id}: #{@title}"
+		s = "#{@id}: #{@title}"
+		@comments.each {|comment| s << "\n\t#{comment}"}
+		
+		return s
+	end
+end
+
+class Comment
+	attr_accessor :text
+	
+	def initialize(comment=nil)
+		@text = comment.comment if !comment.nil?
+	end
+	
+	def to_s
+		return @text
 	end
 end
 
@@ -29,6 +49,10 @@ repo.issues.each do |gh_issue|
 	issue.id = gh_issue.number
 	issue.title = gh_issue.title
 	
+	comment = Comment.new
+	comment.text = gh_issue.body
+	issue.comments << comment
+	
 	issues << issue
 end
 
@@ -38,6 +62,7 @@ ticgit.ticket_list.each do |ti_issue|
 	issue = Issue.new
 	issue.id = ti_issue.ticket_id
 	issue.title = ti_issue.title
+	ti_issue.comments.each {|comment| issue.comments << Comment.new(comment)}
 	
 	issues << issue
 end

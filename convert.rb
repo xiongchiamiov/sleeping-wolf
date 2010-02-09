@@ -11,7 +11,7 @@ class Issue
 	#attr_accessor :repository, :user, :updated_at, :votes, :number, :title
 	#attr_accessor :body, :closed_at, :labels, :state, :created_at
 	
-	attr_accessor :id, :title
+	attr_accessor :title
 	attr_accessor :comments # arrays
 	
 	def initialize
@@ -19,7 +19,7 @@ class Issue
 	end
 	
 	def to_s
-		s = "#{@id}: #{@title}"
+		s = "#{@title}"
 		@comments.each {|comment| s << "\n\t#{comment}"}
 		
 		return s
@@ -46,7 +46,6 @@ repo = Octopi::Repository.find(:user => user, :name => project)
 
 repo.issues.each do |gh_issue|
 	issue = Issue.new
-	issue.id = gh_issue.number
 	issue.title = gh_issue.title
 	
 	comment = Comment.new
@@ -60,7 +59,6 @@ ticgit = TicGit.open('../synchronizer-test')
 
 ticgit.ticket_list.each do |ti_issue|
 	issue = Issue.new
-	issue.id = ti_issue.ticket_id
 	issue.title = ti_issue.title
 	ti_issue.comments.each {|comment| issue.comments << Comment.new(comment)}
 	

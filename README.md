@@ -22,12 +22,12 @@ You'll also need [octopi][3].
 # On the Name
 ticgit---gh-issues-synchronizer was just too damn long a name, even if it was descriptive.  So, I went looking:
 
-[Google][0] -> [Wikipedia (Synchronizer)][1] -> [Wikipedia (Synchronization][2] -> [Wikipedia (Data Synchronization)][3] -> [Scholarpedia (Slepian-Wolf coding)][4] -> sleeping wolf
+[Google][10] -> [Wikipedia (Synchronizer)][11] -> [Wikipedia (Synchronization][12] -> [Wikipedia (Data Synchronization)][13] -> [Scholarpedia (Slepian-Wolf coding)][14] -> sleeping wolf
 
 Plus, I can have an awesomely cute logo, once I find someone to make it!
 
-[0]: http://www.google.com/search?hl=en&q=synchronizer&aq=f&oq=&aqi=
-[1]: http://en.wikipedia.org/wiki/Synchronizer
-[2]: http://en.wikipedia.org/wiki/Synchronization
-[3]: http://en.wikipedia.org/wiki/Data_synchronization
-[4]: http://www.scholarpedia.org/article/Slepian-Wolf_coding
+[10]: http://www.google.com/search?hl=en&q=synchronizer&aq=f&oq=&aqi=
+[11]: http://en.wikipedia.org/wiki/Synchronizer
+[12]: http://en.wikipedia.org/wiki/Synchronization
+[13]: http://en.wikipedia.org/wiki/Data_synchronization
+[14]: http://www.scholarpedia.org/article/Slepian-Wolf_coding

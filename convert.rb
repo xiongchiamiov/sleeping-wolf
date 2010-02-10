@@ -11,7 +11,7 @@ class Issue
 	#attr_accessor :repository, :user, :updated_at, :votes, :number, :title
 	#attr_accessor :body, :closed_at, :labels, :state, :created_at
 	
-	attr_accessor :title, :date_opened
+	attr_accessor :title, :date_opened, :state
 	attr_accessor :comments, :labels # arrays
 	
 	def initialize
@@ -20,7 +20,7 @@ class Issue
 	end
 	
 	def to_s
-		s = "#{@title} -- #{@date_opened.strftime '%Y-%m-%d'}"
+		s = "#{@title} (#{@state}) -- #{@date_opened.strftime '%Y-%m-%d'}"
 		s << "\n\tlabels: #{@labels.join ', '}"
 		@comments.each {|comment| s << "\n\t#{comment}"}
 		
@@ -51,6 +51,7 @@ repo.all_issues.each do |gh_issue|
 	issue.title = gh_issue.title
 	issue.labels = gh_issue.labels
 	issue.date_opened = gh_issue.created_at
+	issue.state = gh_issue.state
 	
 	comment = Comment.new
 	comment.text = gh_issue.body
@@ -66,6 +67,7 @@ ticgit.ticket_list.each do |ti_issue|
 	issue.title = ti_issue.title
 	issue.labels = ti_issue.tags
 	issue.date_opened = ti_issue.opened
+	issue.state = ti_issue.state
 	ti_issue.comments.each {|comment| issue.comments << Comment.new(comment)}
 	
 	issues << issue

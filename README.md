@@ -10,14 +10,19 @@ Ruby 1.9), so you'll probably need to install from one of [the forks][1]. I used
 
 ticgit currently requires ruby/git, which is deprecated in favor of grit. Until
 someone fixes that, you'll need a version of ruby/git that works with ruby 1.9.
-rrouse has [such a thing][4].
+[I'm attempting][4] to maintain one. Be aware that it currently requires jeweler
+to build the gem, and jeweler requires ruby/git, so you'll be overwriting the
+version of ruby/git that gets pulled in by gem.  *sigh*
 
-You'll also need [octopi][3].
+You'll also need [octopi][3]. Until [issue 18][5] gets fixed, you'll want to
+grab [my fork][6].
 
 [1]: http://github.com/schacon/ticgit/network
 [2]: http://github.com/jeffWelling/ticgit/
 [3]: http://github.com/fcoury/octopi/
-[4]: http://github.com/rrouse/ruby-git
+[4]: http://github.com/xiongchiamiov/ruby-git
+[5]: http://github.com/fcoury/octopi/issues/#issue/18
+[6]: http://github.com/xiongchiamiov/octopi
 
 # On the Name
 ticgit---gh-issues-synchronizer was just too damn long a name, even if it was descriptive.  So, I went looking:

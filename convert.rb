@@ -46,7 +46,7 @@ issues = []
 
 repo = Octopi::Repository.find(:user => user, :name => project)
 
-repo.issues.each do |gh_issue|
+repo.all_issues.each do |gh_issue|
 	issue = Issue.new
 	issue.title = gh_issue.title
 	issue.labels = gh_issue.labels

@@ -81,3 +81,14 @@ def retrieve_from_ticgit(path)
 	
 	return issues
 end
+
+def combine(list1, list2)
+	issues = []
+	
+	# do some fancy equality checks to merge the lists together, without duplicates
+	# first item gets priority, which should be mentioned somewhere....
+	issues << list1 << list2
+	issues.flatten!
+	
+	return issues
+end

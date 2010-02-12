@@ -4,11 +4,19 @@ require 'sleeping-wolf'
 
 user = 'xiongchiamiov'
 project = 'synchronizer-test'
-test_repository = '../synchronizer-test'
-issues = []
-gh_issues = retrieve_from_gh_issues(user, project)
-ticgit_issues = retrieve_from_ticgit(test_repository)
+test_repository = '../../synchronizer-test'
 
-#issues.each { |issue| puts issue }
+puts '*' * 80
+puts 'Loading issues from GitHub...'
+gh_issues = retrieve_from_gh_issues(user, project)
 gh_issues.each { |issue| puts issue }
+
+puts '*' * 80
+puts 'Loading issues from ticgit...'
+ticgit_issues = retrieve_from_ticgit(test_repository)
 ticgit_issues.each { |issue| puts issue }
+
+puts '*' * 80
+puts 'And this is the combined list!'
+issues = combine(gh_issues, ticgit_issues)
+issues.each { |issue| puts issue }

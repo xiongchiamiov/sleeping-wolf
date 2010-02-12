@@ -27,6 +27,11 @@ class Issue
 		
 		return s
 	end
+	
+	def might_include(issue)
+		# TODO
+		return self == issue
+	end
 end
 
 class Comment
@@ -38,6 +43,13 @@ class Comment
 	
 	def to_s
 		return @text
+	end
+end
+
+class Array
+	def might_include?(issue)
+		self.each { |i| return true if i.might_include issue }
+		return false
 	end
 end
 
@@ -83,12 +95,13 @@ def retrieve_from_ticgit(path)
 end
 
 def combine(list1, list2)
-	issues = []
+	issues = Array.new(list1)
 	
 	# do some fancy equality checks to merge the lists together, without duplicates
 	# first item gets priority, which should be mentioned somewhere....
-	issues << list1 << list2
-	issues.flatten!
+	list2.each do |issue|
+		issues << issue if !issues.might_include? issue
+	end
 	
 	return issues
 end

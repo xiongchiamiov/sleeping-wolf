@@ -20,3 +20,8 @@ puts '*' * 80
 puts 'And this is the combined list!'
 issues = gh_issues.combine ticgit_issues
 issues.each { |issue| puts issue }
+
+puts '*' * 80
+puts 'Sync away!'
+issues.save_to_ticgit(test_repository)
+issues.save_to_gh_issues(user, project)

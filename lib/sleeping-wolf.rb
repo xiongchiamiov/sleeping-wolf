@@ -63,6 +63,14 @@ class Array
 		
 		return issues
 	end
+	
+	def save_to_ticgit(path)
+		
+	end
+	
+	def save_to_gh_issues(user, project)
+		
+	end
 end
 
 def retrieve_from_gh_issues(user, project)

@@ -18,5 +18,5 @@ ticgit_issues.each { |issue| puts issue }
 
 puts '*' * 80
 puts 'And this is the combined list!'
-issues = combine(gh_issues, ticgit_issues)
+issues = gh_issues.combine ticgit_issues
 issues.each { |issue| puts issue }

@@ -51,6 +51,18 @@ class Array
 		self.each { |i| return true if i.might_include issue }
 		return false
 	end
+	
+	def combine(list)
+		issues = Array.new(self)
+		
+		# do some fancy equality checks to merge the lists together, without duplicates
+		# first item gets priority, which should be mentioned somewhere....
+		list.each do |issue|
+			issues << issue if !issues.might_include? issue
+		end
+		
+		return issues
+	end
 end
 
 def retrieve_from_gh_issues(user, project)
@@ -89,18 +101,6 @@ def retrieve_from_ticgit(path)
 		ti_issue.comments.each {|comment| issue.comments << Comment.new(comment)}
 		
 		issues << issue
-	end
-	
-	return issues
-end
-
-def combine(list1, list2)
-	issues = Array.new(list1)
-	
-	# do some fancy equality checks to merge the lists together, without duplicates
-	# first item gets priority, which should be mentioned somewhere....
-	list2.each do |issue|
-		issues << issue if !issues.might_include? issue
 	end
 	
 	return issues

@@ -11,7 +11,6 @@ Gem::Specification.new do |s|
 	
 	s.files = %w[LICENSE Rakefile README.md bin/sleeping-wolf lib/sleeping-wolf.rb]
 	s.extra_rdoc_files = %w[LICENSE README.md]
-	s.has_rdoc = 'false'
 	s.bindir = 'bin'
 	s.executables = %w[sleeping-wolf]
 	

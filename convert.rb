@@ -41,39 +41,54 @@ class Comment
 	end
 end
 
+def retrieve_from_gh_issues(user, project)
+	issues = []
+	repo = Octopi::Repository.find(:user => user, :name => project)
+	
+	repo.all_issues.each do |gh_issue|
+		issue = Issue.new
+		issue.id = gh_issue.number
+		issue.title = gh_issue.title
+		issue.labels = gh_issue.labels
+		issue.date_opened = gh_issue.created_at
+		issue.state = gh_issue.state
+		
+		comment = Comment.new
+		comment.text = gh_issue.body
+		issue.comments << comment
+		
+		issues << issue
+	end
+	
+	return issues
+end
+
+def retrieve_from_ticgit(path)
+	issues = []
+	ticgit = TicGit.open(path)
+	
+	ticgit.ticket_list.each do |ti_issue|
+		issue = Issue.new
+		issue.id = ti_issue.ticket_id
+		issue.title = ti_issue.title
+		issue.labels = ti_issue.tags
+		issue.date_opened = ti_issue.opened
+		issue.state = ti_issue.state
+		ti_issue.comments.each {|comment| issue.comments << Comment.new(comment)}
+		
+		issues << issue
+	end
+	
+	return issues
+end
+
 user = 'xiongchiamiov'
 project = 'synchronizer-test'
+test_repository = '../synchronizer-test'
 issues = []
+gh_issues = retrieve_from_gh_issues(user, project)
+ticgit_issues = retrieve_from_ticgit(test_repository)
 
-repo = Octopi::Repository.find(:user => user, :name => project)
-
-repo.all_issues.each do |gh_issue|
-	issue = Issue.new
-	issue.id = gh_issue.number
-	issue.title = gh_issue.title
-	issue.labels = gh_issue.labels
-	issue.date_opened = gh_issue.created_at
-	issue.state = gh_issue.state
-	
-	comment = Comment.new
-	comment.text = gh_issue.body
-	issue.comments << comment
-	
-	issues << issue
-end
-
-ticgit = TicGit.open('../synchronizer-test')
-
-ticgit.ticket_list.each do |ti_issue|
-	issue = Issue.new
-	issue.id = ti_issue.ticket_id
-	issue.title = ti_issue.title
-	issue.labels = ti_issue.tags
-	issue.date_opened = ti_issue.opened
-	issue.state = ti_issue.state
-	ti_issue.comments.each {|comment| issue.comments << Comment.new(comment)}
-	
-	issues << issue
-end
-
-issues.each { |issue| puts issue }
+#issues.each { |issue| puts issue }
+gh_issues.each { |issue| puts issue }
+ticgit_issues.each { |issue| puts issue }

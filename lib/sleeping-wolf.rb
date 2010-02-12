@@ -81,14 +81,3 @@ def retrieve_from_ticgit(path)
 	
 	return issues
 end
-
-user = 'xiongchiamiov'
-project = 'synchronizer-test'
-test_repository = '../synchronizer-test'
-issues = []
-gh_issues = retrieve_from_gh_issues(user, project)
-ticgit_issues = retrieve_from_ticgit(test_repository)
-
-#issues.each { |issue| puts issue }
-gh_issues.each { |issue| puts issue }
-ticgit_issues.each { |issue| puts issue }

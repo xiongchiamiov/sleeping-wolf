@@ -29,8 +29,16 @@ class Issue
 	end
 	
 	def might_equal?(issue)
-		# TODO
-		return self == issue
+		probability = 0
+		
+		#              v--- these weights need to add up to 1
+		probability += 0.20 * (@title.might_equal? issue.title)
+		probability += 0.20 * (@date_opened.might_equal? issue.date_opened)
+		probability += 0.10 * (@state.might_equal? issue.state)
+		probability += 0.30 * (@comments.might_equal? issue.comments)
+		probability += 0.20 * (@labels.might_equal? issue.labels)
+		
+		return probability
 	end
 end
 
@@ -48,8 +56,17 @@ end
 
 class Array
 	def might_include?(issue)
-		self.each { |i| return true if i.might_equal? issue }
+		self.each { |i| return true if (i.might_equal? issue) == 100 }
 		return false
+	end
+	
+	def might_equal?(array)
+		# this'll need to be a bit more sophisticated than just checking length
+		if self.length == array.length
+			return 100
+		else
+			return 0
+		end
 	end
 	
 	def combine(list)
@@ -70,6 +87,26 @@ class Array
 	
 	def save_to_gh_issues(user, project)
 		
+	end
+end
+
+class String
+	def might_equal?(string)
+		if self == string
+			return 100
+		else
+			return 0
+		end
+	end
+end
+
+class Time
+	def might_equal?(date)
+		if self == date
+			return 100
+		else
+			return 0
+		end
 	end
 end
 

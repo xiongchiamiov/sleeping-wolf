@@ -75,5 +75,50 @@ class WolfTest < Test::Unit::TestCase
 				assert_equal 'open', @issue.state
 			end
 		end
+		
+		context 'might_equal?' do
+			setup do
+				@issue = Issue.new
+				@issue.id = 1
+				@issue.title = 'Lorem Ipsum'
+				@issue.labels = []
+				@issue.date_opened = Time.parse('2010-01-01')
+				@issue.state = 'open'
+				@issue.comments = []
+				
+				@modified_issue = @issue.clone
+			end
+			
+			should 'fuzzy-equal itself with the correct certainty' do
+				assert_equal 100, @issue.might_equal?(@issue)
+			end
+			
+			should 'fuzzy-equal itself with the correct certainty with title changed' do
+				@modified_issue.title = 'Dolor Sit Amet'
+				assert_equal 80, @issue.might_equal?(@modified_issue)
+			end
+			
+			should 'fuzzy-equal itself with the correct certainty with date changed' do
+				@modified_issue.date_opened = Time.parse('2000-01-01')
+				assert_equal 80, @issue.might_equal?(@modified_issue)
+			end
+			
+			should 'fuzzy-equal itself with the correct certainty with state changed' do
+				@modified_issue.state = 'closed'
+				assert_equal 90, @issue.might_equal?(@modified_issue)
+			end
+			
+			should 'fuzzy-equal itself with the correct certainty with comments changed' do
+				comment = Comment.new
+				comment.text = 'foo comment'
+				@modified_issue.comments = [comment]
+				assert_equal 70, @issue.might_equal?(@modified_issue)
+			end
+			
+			should 'fuzzy-equal itself with the correct certainty with labels changed' do
+				@modified_issue.labels = ['foo-label']
+				assert_equal 80, @issue.might_equal?(@modified_issue)
+			end
+		end
 	end
 end

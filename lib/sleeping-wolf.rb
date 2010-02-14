@@ -28,7 +28,7 @@ class Issue
 		return s
 	end
 	
-	def might_include(issue)
+	def might_equal?(issue)
 		# TODO
 		return self == issue
 	end
@@ -48,7 +48,7 @@ end
 
 class Array
 	def might_include?(issue)
-		self.each { |i| return true if i.might_include issue }
+		self.each { |i| return true if i.might_equal? issue }
 		return false
 	end
 	

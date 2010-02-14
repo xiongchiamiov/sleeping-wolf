@@ -120,5 +120,13 @@ class WolfTest < Test::Unit::TestCase
 				assert_equal 80, @issue.might_equal?(@modified_issue)
 			end
 		end
+		
+		should 'combine correctly' do
+			issues = @gh_issues.combine @ticgit_issues
+			assert_equal @gh_issues[0], issues[0]
+			assert_equal @gh_issues[1], issues[1]
+			assert_equal @ticgit_issues[0], issues[2]
+			assert_equal @ticgit_issues[1], issues[3]
+		end
 	end
 end

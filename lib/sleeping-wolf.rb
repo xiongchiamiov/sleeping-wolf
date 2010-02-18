@@ -11,7 +11,7 @@ class Issue
 	#attr_accessor :repository, :user, :updated_at, :votes, :number, :title
 	#attr_accessor :body, :closed_at, :labels, :state, :created_at
 	
-	attr_accessor :id # not syncable information
+	attr_accessor :gh_issues_id, :ticgit_id # not syncable information
 	attr_accessor :title, :date_opened, :state
 	attr_accessor :comments, :labels # arrays
 	
@@ -116,7 +116,7 @@ def retrieve_from_gh_issues(user, project)
 	
 	repo.all_issues.each do |gh_issue|
 		issue = Issue.new
-		issue.id = gh_issue.number
+		issue.gh_issues_id = gh_issue.number
 		issue.title = gh_issue.title
 		issue.labels = gh_issue.labels
 		issue.date_opened = gh_issue.created_at
@@ -138,7 +138,7 @@ def retrieve_from_ticgit(path)
 	
 	ticgit.ticket_list.each do |ti_issue|
 		issue = Issue.new
-		issue.id = ti_issue.ticket_id
+		issue.ticgit_id = ti_issue.ticket_id
 		issue.title = ti_issue.title
 		issue.labels = ti_issue.tags
 		issue.date_opened = ti_issue.opened

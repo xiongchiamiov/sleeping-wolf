@@ -27,7 +27,7 @@ class WolfTest < Test::Unit::TestCase
 			
 			should 'have the correct issue information' do
 				assert_equal [], @issue.labels
-				assert_equal 2, @issue.id
+				assert_equal 2, @issue.gh_issues_id
 				assert_equal 'gh-issues test #2', @issue.title
 				assert_equal '2010-02-07', @issue.date_opened.strftime('%Y-%m-%d')
 				assert_equal 'open', @issue.state
@@ -41,7 +41,7 @@ class WolfTest < Test::Unit::TestCase
 			
 			should 'have the correct issue information' do
 				assert_equal ["gh-issues label#1", "gh-issues label#2"], @issue.labels
-				assert_equal 1, @issue.id
+				assert_equal 1, @issue.gh_issues_id
 				assert_equal 'gh-issues test #1', @issue.title
 				assert_equal '2010-02-07', @issue.date_opened.strftime('%Y-%m-%d')
 				assert_equal 'closed', @issue.state
@@ -55,7 +55,7 @@ class WolfTest < Test::Unit::TestCase
 			
 			should 'have the correct issue information' do
 				assert_equal ["ticgit-tag-1", "ticgit-tag-2"], @issue.labels
-				assert_equal 'afbe519a76137ea4e1ed8f53a6b75c7e602087ab', @issue.id
+				assert_equal 'afbe519a76137ea4e1ed8f53a6b75c7e602087ab', @issue.ticgit_id
 				assert_equal 'ticgit issue #1', @issue.title
 				assert_equal '2010-02-08', @issue.date_opened.strftime('%Y-%m-%d')
 				assert_equal 'open', @issue.state
@@ -69,7 +69,7 @@ class WolfTest < Test::Unit::TestCase
 			
 			should 'have the correct issue information' do
 				assert_equal [], @issue.labels
-				assert_equal 'bd6f3184644f6ef3a50d2bc92ce6baa1609cce31', @issue.id
+				assert_equal 'bd6f3184644f6ef3a50d2bc92ce6baa1609cce31', @issue.ticgit_id
 				assert_equal 'ticgit issue #2', @issue.title
 				assert_equal '2010-02-08', @issue.date_opened.strftime('%Y-%m-%d')
 				assert_equal 'open', @issue.state
@@ -79,7 +79,7 @@ class WolfTest < Test::Unit::TestCase
 		context 'might_equal?' do
 			setup do
 				@issue = Issue.new
-				@issue.id = 1
+				@issue.gh_issues_id = 1
 				@issue.title = 'Lorem Ipsum'
 				@issue.labels = []
 				@issue.date_opened = Time.parse('2010-01-01')

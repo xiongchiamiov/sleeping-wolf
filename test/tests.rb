@@ -54,7 +54,7 @@ class WolfTest < Test::Unit::TestCase
 			end
 			
 			should 'have the correct issue information' do
-				assert_equal [], @issue.labels
+				assert_equal ["ticgit-tag-1", "ticgit-tag-2"], @issue.labels
 				assert_equal 'afbe519a76137ea4e1ed8f53a6b75c7e602087ab', @issue.id
 				assert_equal 'ticgit issue #1', @issue.title
 				assert_equal '2010-02-08', @issue.date_opened.strftime('%Y-%m-%d')

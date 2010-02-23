@@ -1,9 +1,11 @@
 I like gh-issues, and its ability to allow other users to easily comment on my
 project. I also like ticgit, and the fact that I have integral parts of my
 project with me, even if github is unavailable. So, I want to use both!
+sleeping-wolf aims to synchronize a ticgit repository with the GitHub-hosted
+Issues for your project, allowing you to do just that.
 
-Since we'll be making commits on behalf of other users, it won't be perfect. But
-hey, let's see what we can do.
+Since we'll be making commits on behalf of other users, and the two don't share
+everything in common, it won't be perfect. But hey, let's see what we can do.
 
 # Status
 
